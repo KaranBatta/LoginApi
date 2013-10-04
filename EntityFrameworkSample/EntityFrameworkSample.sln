@@ -1,25 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkSample", "EntityFrameworkSample\EntityFrameworkSample.csproj", "{B476398B-A090-4195-8585-EB4DB393F37D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkSample.Tests", "EntityFrameworkSample.Tests\EntityFrameworkSample.Tests.csproj", "{2787FCA0-7934-4BBB-AC46-6A3F1F9AA853}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B476398B-A090-4195-8585-EB4DB393F37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B476398B-A090-4195-8585-EB4DB393F37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B476398B-A090-4195-8585-EB4DB393F37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B476398B-A090-4195-8585-EB4DB393F37D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2787FCA0-7934-4BBB-AC46-6A3F1F9AA853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2787FCA0-7934-4BBB-AC46-6A3F1F9AA853}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2787FCA0-7934-4BBB-AC46-6A3F1F9AA853}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2787FCA0-7934-4BBB-AC46-6A3F1F9AA853}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
