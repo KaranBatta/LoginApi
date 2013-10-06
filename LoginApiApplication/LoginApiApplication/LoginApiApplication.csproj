@@ -184,11 +184,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Subscriber.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SubscriberModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubscriberModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubscriberModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubscriberModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>Subscriber.tt</DependentUpon>
+      <DependentUpon>SubscriberModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserAccount.cs">
-      <DependentUpon>Subscriber.tt</DependentUpon>
+      <DependentUpon>SubscriberModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +285,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Subscriber.edmx.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -321,6 +332,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Subscriber.edmx</DependentUpon>
       <LastGenOutput>Subscriber.cs</LastGenOutput>
+    </Content>
+    <Content Include="SubscriberModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SubscriberModel.Context.cs</LastGenOutput>
+      <DependentUpon>Subscriber.edmx</DependentUpon>
+    </Content>
+    <Content Include="SubscriberModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SubscriberModel.cs</LastGenOutput>
+      <DependentUpon>Subscriber.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
