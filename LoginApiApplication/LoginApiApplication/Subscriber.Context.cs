@@ -13,10 +13,10 @@ namespace LoginApiApplication
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SubscriberContainer : DbContext
+    public partial class UserContext : DbContext
     {
-        public SubscriberContainer()
-            : base("name=SubscriberContainer")
+        public UserContext()
+            : base("name=UserContext")
         {
         }
     

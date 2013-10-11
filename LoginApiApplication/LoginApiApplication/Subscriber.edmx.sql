@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/05/2013 17:08:03
+-- Date Created: 10/11/2013 11:49:33
 -- Generated from EDMX file: C:\Users\KaranB\Documents\Visual Studio 2012\Projects\Git\LoginApi\trunk\LoginApiApplication\LoginApiApplication\Subscriber.edmx
 -- --------------------------------------------------
 

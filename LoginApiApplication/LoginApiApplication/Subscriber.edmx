@@ -58,7 +58,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Subscriber" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="SubscriberContainer" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="UserContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Subscriber.User" />
           <EntitySet Name="UserAccounts" EntityType="Subscriber.UserAccount" />
           <AssociationSet Name="UsersUserAccount" Association="Subscriber.UsersUserAccount">
@@ -114,7 +114,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SubscriberStoreContainer" CdmEntityContainer="SubscriberContainer">
+  <EntityContainerMapping StorageEntityContainer="SubscriberStoreContainer" CdmEntityContainer="UserContext">
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(Subscriber.User)">
         <MappingFragment StoreEntitySet="Users">

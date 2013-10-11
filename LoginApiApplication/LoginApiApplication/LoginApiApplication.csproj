@@ -167,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddUser.cs" />
     <Compile Include="Models\PasswordUtility\PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriber.Context.cs">
@@ -184,21 +185,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Subscriber.edmx</DependentUpon>
     </Compile>
-    <Compile Include="SubscriberModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SubscriberModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubscriberModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SubscriberModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>SubscriberModel.tt</DependentUpon>
+      <DependentUpon>Subscriber.tt</DependentUpon>
     </Compile>
     <Compile Include="UserAccount.cs">
-      <DependentUpon>SubscriberModel.tt</DependentUpon>
+      <DependentUpon>Subscriber.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -332,16 +323,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Subscriber.edmx</DependentUpon>
       <LastGenOutput>Subscriber.cs</LastGenOutput>
-    </Content>
-    <Content Include="SubscriberModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SubscriberModel.Context.cs</LastGenOutput>
-      <DependentUpon>Subscriber.edmx</DependentUpon>
-    </Content>
-    <Content Include="SubscriberModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SubscriberModel.cs</LastGenOutput>
-      <DependentUpon>Subscriber.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
