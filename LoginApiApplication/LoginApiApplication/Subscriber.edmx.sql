@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/11/2013 11:49:33
+-- Date Created: 10/11/2013 16:39:28
 -- Generated from EDMX file: C:\Users\KaranB\Documents\Visual Studio 2012\Projects\Git\LoginApi\trunk\LoginApiApplication\LoginApiApplication\Subscriber.edmx
 -- --------------------------------------------------
 
@@ -54,13 +54,13 @@ CREATE TABLE [dbo].[UserAccounts] (
     [UserAccountId] uniqueidentifier  NOT NULL,
     [Username] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [LoginAttempts] nvarchar(max)  NOT NULL,
-    [Locked] nvarchar(max)  NOT NULL,
-    [IsAdmin] nvarchar(max)  NOT NULL,
-    [ConfirmedEmail] nvarchar(max)  NOT NULL,
-    [IsAuthorized] nvarchar(max)  NOT NULL,
-    [LastLogin] nvarchar(max)  NOT NULL,
-    [SignupDate] nvarchar(max)  NOT NULL,
+    [LoginAttempts] int  NOT NULL,
+    [Locked] bit  NOT NULL,
+    [IsAdmin] bit  NOT NULL,
+    [ConfirmedEmail] bit  NOT NULL,
+    [IsAuthorized] bit  NOT NULL,
+    [LastLogin] datetime  NOT NULL,
+    [SignupDate] datetime  NOT NULL,
     [UserUserId] uniqueidentifier  NOT NULL
 );
 GO

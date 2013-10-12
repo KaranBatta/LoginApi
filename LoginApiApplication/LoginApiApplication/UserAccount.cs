@@ -17,13 +17,13 @@ namespace LoginApiApplication
         public System.Guid UserAccountId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string LoginAttempts { get; set; }
-        public string Locked { get; set; }
-        public string IsAdmin { get; set; }
-        public string ConfirmedEmail { get; set; }
-        public string IsAuthorized { get; set; }
-        public string LastLogin { get; set; }
-        public string SignupDate { get; set; }
+        public int LoginAttempts { get; set; }
+        public bool Locked { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool ConfirmedEmail { get; set; }
+        public bool IsAuthorized { get; set; }
+        public System.DateTime LastLogin { get; set; }
+        public System.DateTime SignupDate { get; set; }
         public System.Guid UserUserId { get; set; }
     
         public virtual User User { get; set; }

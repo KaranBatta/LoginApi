@@ -77,5 +77,39 @@ namespace LoginApiApplication.Tests.Controllers
 
             // Assert
         }
+
+        [TestMethod]
+        public void AddUser()
+        {
+            Models.AddUser.AddSimpleUser(new User
+            {
+                Address = "test",
+                Email = "test@test.com",
+                UserId = Guid.NewGuid(),
+                Company = "test",
+                DateOfBirth = DateTime.Today,
+                FirstName = "test",
+                LastName = "test",
+                PhoneNumber = 123345,
+            },  new UserAccount
+            {
+                IsAdmin = true,
+                IsAuthorized = true,
+                ConfirmedEmail = true,
+                Locked = false,
+                Username = "karan",
+                Password = "karan",
+                LastLogin = DateTime.UtcNow,
+                LoginAttempts = 0,
+                SignupDate = DateTime.Today,
+                UserAccountId = Guid.NewGuid()
+            });
+        }
+
+        [TestMethod]
+        public void GetUser()
+        {
+            Models.RetrieveUser.RetrieveSimpleUser("test@test.com");
+        }
     }
 }

@@ -33,13 +33,13 @@
     <Property Name="UserAccountId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LoginAttempts" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Locked" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsAdmin" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ConfirmedEmail" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsAuthorized" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastLogin" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SignupDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LoginAttempts" Type="int" Nullable="false" />
+    <Property Name="Locked" Type="bit" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="ConfirmedEmail" Type="bit" Nullable="false" />
+    <Property Name="IsAuthorized" Type="bit" Nullable="false" />
+    <Property Name="LastLogin" Type="datetime" Nullable="false" />
+    <Property Name="SignupDate" Type="datetime" Nullable="false" />
     <Property Name="UserUserId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="UsersUserAccount">
@@ -87,13 +87,13 @@
           <Property Type="Guid" Name="UserAccountId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="Username" Nullable="false" />
           <Property Type="String" Name="Password" Nullable="false" />
-          <Property Type="String" Name="LoginAttempts" Nullable="false" />
-          <Property Type="String" Name="Locked" Nullable="false" />
-          <Property Type="String" Name="IsAdmin" Nullable="false" />
-          <Property Type="String" Name="ConfirmedEmail" Nullable="false" />
-          <Property Type="String" Name="IsAuthorized" Nullable="false" />
-          <Property Type="String" Name="LastLogin" Nullable="false" />
-          <Property Type="String" Name="SignupDate" Nullable="false" />
+          <Property Type="Int32" Name="LoginAttempts" Nullable="false" />
+          <Property Type="Boolean" Name="Locked" Nullable="false" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="ConfirmedEmail" Nullable="false" />
+          <Property Type="Boolean" Name="IsAuthorized" Nullable="false" />
+          <Property Type="DateTime" Name="LastLogin" Nullable="false" />
+          <Property Type="DateTime" Name="SignupDate" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Subscriber.UsersUserAccount" FromRole="UserAccount" ToRole="User" />
           <Property Type="Guid" Name="UserUserId" Nullable="false" />
         </EntityType>

@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Models\AddUser.cs" />
     <Compile Include="Models\PasswordUtility\PasswordHash.cs" />
+    <Compile Include="Models\RetrieveUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscriber.Context.cs">
       <AutoGen>True</AutoGen>
