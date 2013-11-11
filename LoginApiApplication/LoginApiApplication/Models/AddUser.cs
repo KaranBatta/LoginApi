@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LoginApiApplication.Models
 {
@@ -9,6 +6,13 @@ namespace LoginApiApplication.Models
     {
         public static void AddSimpleUser(User user, UserAccount userAccount)
         {
+            var existingUser = RetrieveUser.RetrieveSimpleUser(user.Email);
+
+            if (existingUser != null)
+            {
+                throw new Exception("This user with the assosiated Email Address already exists");
+            }
+
             using (var db = new UserContext())
             {
                 var addUser = new User
@@ -33,7 +37,7 @@ namespace LoginApiApplication.Models
                     Locked = userAccount.Locked,
                     LoginAttempts = userAccount.LoginAttempts,
                     Username = userAccount.Username,
-                    Password = userAccount.Password,
+                    Password = PasswordUtility.PasswordHash.CreateHash(userAccount.Password),
                     UserAccountId = userAccount.UserAccountId,
                     UserUserId = user.UserId,
                 };

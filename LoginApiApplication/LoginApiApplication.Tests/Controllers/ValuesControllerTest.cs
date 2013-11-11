@@ -109,7 +109,7 @@ namespace LoginApiApplication.Tests.Controllers
         [TestMethod]
         public void GetUser()
         {
-            Models.RetrieveUser.RetrieveSimpleUser("test@test.com");
+            Models.RetrieveUser.RetrieveSimpleUser("test@test.com", "Karan");
         }
     }
 }
