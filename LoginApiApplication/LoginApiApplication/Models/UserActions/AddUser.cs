@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LoginApiApplication.Models
+namespace LoginApiApplication.Models.UserActions
 {
     public class AddUser
     {

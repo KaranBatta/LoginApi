@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace LoginApiApplication.Models
+namespace LoginApiApplication.Models.UserActions
 {
     public class RetrieveUser
     {
