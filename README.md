@@ -1,4 +1,4 @@
 LoginApi
 ========
 
-Simple Login system via REST API (Using Entity Framework)
+Simple scalable Login/Auth framework available via a simple REST API...
