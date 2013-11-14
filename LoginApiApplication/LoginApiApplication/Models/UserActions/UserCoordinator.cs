@@ -35,39 +35,36 @@ namespace LoginApiApplication.Models.UserActions
                 throw new Exception("Email Address entered isn't valid.");
             }
 
-            using (_context)
+            var addUser = new User
             {
-                var addUser = new User
-                {
-                    UserId = user.UserId,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    DateOfBirth = user.DateOfBirth,
-                    Address = user.Address,
-                    Email = user.Email,
-                    Company = user.Company,
-                    PhoneNumber = user.PhoneNumber,
-                };
+                UserId = user.UserId,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth = user.DateOfBirth,
+                Address = user.Address,
+                Email = user.Email,
+                Company = user.Company,
+                PhoneNumber = user.PhoneNumber,
+            };
 
-                var addUserAccount = new UserAccount()
-                {
-                    IsAdmin = userAccount.IsAdmin,
-                    ConfirmedEmail = userAccount.ConfirmedEmail,
-                    IsAuthorized = userAccount.IsAuthorized,
-                    LastLogin = userAccount.LastLogin,
-                    SignupDate = userAccount.SignupDate,
-                    Locked = userAccount.Locked,
-                    LoginAttempts = userAccount.LoginAttempts,
-                    Username = userAccount.Username,
-                    Password = PasswordHash.CreateHash(userAccount.Password),
-                    UserAccountId = userAccount.UserAccountId,
-                    UserUserId = user.UserId,
-                };
+            var addUserAccount = new UserAccount()
+            {
+                IsAdmin = userAccount.IsAdmin,
+                ConfirmedEmail = userAccount.ConfirmedEmail,
+                IsAuthorized = userAccount.IsAuthorized,
+                LastLogin = userAccount.LastLogin,
+                SignupDate = userAccount.SignupDate,
+                Locked = userAccount.Locked,
+                LoginAttempts = userAccount.LoginAttempts,
+                Username = userAccount.Username,
+                Password = PasswordHash.CreateHash(userAccount.Password),
+                UserAccountId = userAccount.UserAccountId,
+                UserUserId = user.UserId,
+            };
 
-                _context.Users.Add(addUser);
-                _context.UserAccounts.Add(addUserAccount);
-                _context.SaveChanges();
-            }
+            _context.Users.Add(addUser);
+            _context.UserAccounts.Add(addUserAccount);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -77,16 +74,8 @@ namespace LoginApiApplication.Models.UserActions
         /// <returns></returns>
         public User RetrieveSimpleUser(string email)
         {
-            using (_context)
-            {
-                var existingUser = from user in _context.Users where user.Email.Equals(email) select user;
-                
-                foreach (var user in existingUser)
-                {
-                    return user;
-                }           
-            }
-            return null;
+            var existingUser = from user in _context.Users where user.Email.Equals(email) select user;
+            return Enumerable.FirstOrDefault(existingUser);
         }
 
         /// <summary>
@@ -97,17 +86,14 @@ namespace LoginApiApplication.Models.UserActions
         /// <returns></returns>
         public User RetrieveSimpleUser(string email, string password)
         {
-            using (_context)
-            {
-                var existingUser = from user in _context.Users where user.Email.Equals(email) select user;
+            var existingUser = from user in _context.Users where user.Email.Equals(email) select user;
 
-                foreach (var user in existingUser)
+            foreach (var user in existingUser)
+            {
+                var isPasswordValid = PasswordHash.ValidatePassword(password, user.UserAccounts.First().Password);
+                if (isPasswordValid)
                 {
-                    var isPasswordValid = PasswordHash.ValidatePassword(password, user.UserAccounts.First().Password);
-                    if (isPasswordValid)
-                    {
-                        return user;
-                    }
+                    return user;
                 }
             }
             return null;
@@ -119,35 +105,32 @@ namespace LoginApiApplication.Models.UserActions
         /// <param name="updatedUser"></param>
         public void EditSimpleUser(User updatedUser)
         {
-            using (_context)
+            var existingUser = RetrieveSimpleUser(updatedUser.Email);
+
+            if (existingUser == null)
             {
-                var existingUser = RetrieveSimpleUser(updatedUser.Email);
-
-                if (existingUser == null)
-                {
-                    throw new Exception("This user does not exist so cannot edit.");
-                }
-
-                existingUser.UserId = updatedUser.UserId;
-                existingUser.FirstName = updatedUser.FirstName;
-                existingUser.LastName = updatedUser.LastName;
-                existingUser.DateOfBirth = updatedUser.DateOfBirth;
-                existingUser.Address = updatedUser.Address;
-                existingUser.Email = updatedUser.Email;
-                existingUser.Company = updatedUser.Company;
-                existingUser.PhoneNumber = updatedUser.PhoneNumber;
-                existingUser.UserAccounts.First().IsAdmin = updatedUser.UserAccounts.First().IsAdmin;
-                existingUser.UserAccounts.First().ConfirmedEmail = updatedUser.UserAccounts.First().ConfirmedEmail;
-                existingUser.UserAccounts.First().IsAuthorized = updatedUser.UserAccounts.First().IsAuthorized;
-                existingUser.UserAccounts.First().LastLogin = updatedUser.UserAccounts.First().LastLogin;
-                existingUser.UserAccounts.First().SignupDate = updatedUser.UserAccounts.First().SignupDate;
-                existingUser.UserAccounts.First().Locked = updatedUser.UserAccounts.First().Locked;
-                existingUser.UserAccounts.First().LoginAttempts = updatedUser.UserAccounts.First().LoginAttempts;
-                existingUser.UserAccounts.First().Username = updatedUser.UserAccounts.First().Username;
-                existingUser.UserAccounts.First().Password = updatedUser.UserAccounts.First().Password;
-                existingUser.UserAccounts.First().UserAccountId = updatedUser.UserAccounts.First().UserAccountId;
-                _context.SaveChanges();
+                throw new Exception("This user does not exist so cannot edit.");
             }
+
+            existingUser.UserId = updatedUser.UserId;
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.DateOfBirth = updatedUser.DateOfBirth;
+            existingUser.Address = updatedUser.Address;
+            existingUser.Email = updatedUser.Email;
+            existingUser.Company = updatedUser.Company;
+            existingUser.PhoneNumber = updatedUser.PhoneNumber;
+            existingUser.UserAccounts.First().IsAdmin = updatedUser.UserAccounts.First().IsAdmin;
+            existingUser.UserAccounts.First().ConfirmedEmail = updatedUser.UserAccounts.First().ConfirmedEmail;
+            existingUser.UserAccounts.First().IsAuthorized = updatedUser.UserAccounts.First().IsAuthorized;
+            existingUser.UserAccounts.First().LastLogin = updatedUser.UserAccounts.First().LastLogin;
+            existingUser.UserAccounts.First().SignupDate = updatedUser.UserAccounts.First().SignupDate;
+            existingUser.UserAccounts.First().Locked = updatedUser.UserAccounts.First().Locked;
+            existingUser.UserAccounts.First().LoginAttempts = updatedUser.UserAccounts.First().LoginAttempts;
+            existingUser.UserAccounts.First().Username = updatedUser.UserAccounts.First().Username;
+            existingUser.UserAccounts.First().Password = updatedUser.UserAccounts.First().Password;
+            existingUser.UserAccounts.First().UserAccountId = updatedUser.UserAccounts.First().UserAccountId;
+            _context.SaveChanges();
         }
     }
 }

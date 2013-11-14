@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using LoginApiApplication.Models.UserActions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LoginApiApplication;
 using LoginApiApplication.Controllers;
@@ -81,35 +82,37 @@ namespace LoginApiApplication.Tests.Controllers
         [TestMethod]
         public void AddUser()
         {
-            Models.AddUser.AddSimpleUser(new User
-            {
-                Address = "test",
-                Email = "test@test.com",
-                UserId = Guid.NewGuid(),
-                Company = "test",
-                DateOfBirth = DateTime.Today,
-                FirstName = "test",
-                LastName = "test",
-                PhoneNumber = 123345,
-            },  new UserAccount
-            {
-                IsAdmin = true,
-                IsAuthorized = true,
-                ConfirmedEmail = true,
-                Locked = false,
-                Username = "karan",
-                Password = "karan",
-                LastLogin = DateTime.UtcNow,
-                LoginAttempts = 0,
-                SignupDate = DateTime.Today,
-                UserAccountId = Guid.NewGuid()
-            });
+            //Models.UserActions.AddUser.AddSimpleUser(new User
+            //{
+            //    Address = "test",
+            //    Email = "test@test.com",
+            //    UserId = Guid.NewGuid(),
+            //    Company = "test",
+            //    DateOfBirth = DateTime.Today,
+            //    FirstName = "test",
+            //    LastName = "test",
+            //    PhoneNumber = 123345,
+            //},  new UserAccount
+            //{
+            //    IsAdmin = true,
+            //    IsAuthorized = true,
+            //    ConfirmedEmail = true,
+            //    Locked = false,
+            //    Username = "karan",
+            //    Password = "karan",
+            //    LastLogin = DateTime.UtcNow,
+            //    LoginAttempts = 0,
+            //    SignupDate = DateTime.Today,
+            //    UserAccountId = Guid.NewGuid()
+            //});
         }
 
         [TestMethod]
         public void GetUser()
         {
-            Models.RetrieveUser.RetrieveSimpleUser("test@test.com", "Karan");
+            var context = new UserContext();
+            IUserCoordinator coordinator = new UserCoordinator(context);
+            coordinator.EditSimpleUser(new User{Email = "test@test.com"});
         }
     }
 }
