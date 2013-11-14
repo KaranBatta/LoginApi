@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace LoginApiApplication.Models.PasswordUtility
+namespace LoginApiApplication.Models.Extensions
 {
     public class PasswordHash
     {
