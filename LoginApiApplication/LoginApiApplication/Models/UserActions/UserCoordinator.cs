@@ -103,7 +103,7 @@ namespace LoginApiApplication.Models.UserActions
         /// 
         /// </summary>
         /// <param name="updatedUser"></param>
-        public void EditSimpleUser(User updatedUser)
+        public void EditSimpleUserDetails(User updatedUser)
         {
             var existingUser = RetrieveSimpleUser(updatedUser.Email);
 
@@ -112,7 +112,6 @@ namespace LoginApiApplication.Models.UserActions
                 throw new Exception("This user does not exist so cannot edit.");
             }
 
-            existingUser.UserId = updatedUser.UserId;
             existingUser.FirstName = updatedUser.FirstName;
             existingUser.LastName = updatedUser.LastName;
             existingUser.DateOfBirth = updatedUser.DateOfBirth;
@@ -120,16 +119,27 @@ namespace LoginApiApplication.Models.UserActions
             existingUser.Email = updatedUser.Email;
             existingUser.Company = updatedUser.Company;
             existingUser.PhoneNumber = updatedUser.PhoneNumber;
-            existingUser.UserAccounts.First().IsAdmin = updatedUser.UserAccounts.First().IsAdmin;
-            existingUser.UserAccounts.First().ConfirmedEmail = updatedUser.UserAccounts.First().ConfirmedEmail;
-            existingUser.UserAccounts.First().IsAuthorized = updatedUser.UserAccounts.First().IsAuthorized;
-            existingUser.UserAccounts.First().LastLogin = updatedUser.UserAccounts.First().LastLogin;
-            existingUser.UserAccounts.First().SignupDate = updatedUser.UserAccounts.First().SignupDate;
-            existingUser.UserAccounts.First().Locked = updatedUser.UserAccounts.First().Locked;
-            existingUser.UserAccounts.First().LoginAttempts = updatedUser.UserAccounts.First().LoginAttempts;
-            existingUser.UserAccounts.First().Username = updatedUser.UserAccounts.First().Username;
-            existingUser.UserAccounts.First().Password = updatedUser.UserAccounts.First().Password;
-            existingUser.UserAccounts.First().UserAccountId = updatedUser.UserAccounts.First().UserAccountId;
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="previousPassword"></param>
+        /// <param name="newPassword"></param>
+        public void ChangePassword(string username, string previousPassword, string newPassword)
+        {
+            var existingUser = RetrieveSimpleUser(username, previousPassword);
+
+            if (existingUser == null)
+            {
+                throw new Exception("This user does not exist so cannot change password.");
+            }
+
+            var newPasswordHash = PasswordHash.CreateHash(newPassword);
+            
+            existingUser.UserAccounts.FirstOrDefault().Password = newPasswordHash;
             _context.SaveChanges();
         }
     }

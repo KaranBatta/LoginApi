@@ -112,7 +112,9 @@ namespace LoginApiApplication.Tests.Controllers
         {
             var context = new UserContext();
             IUserCoordinator coordinator = new UserCoordinator(context);
-            coordinator.EditSimpleUser(new User{Email = "test@test.com"});
+            //coordinator.EditSimpleUser(new User{Email = "test@test.com"});
+            //coordinator.ChangePassword("test@test.com", "karan", "karanbatta");
+            //coordinator.RetrieveSimpleUser("test@test.com", "karanbatta");
         }
     }
 }

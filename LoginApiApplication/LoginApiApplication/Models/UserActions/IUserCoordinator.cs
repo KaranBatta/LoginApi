@@ -33,6 +33,14 @@ namespace LoginApiApplication.Models.UserActions
         /// 
         /// </summary>
         /// <param name="updateUser"></param>
-        void EditSimpleUser(User updateUser);
+        void EditSimpleUserDetails(User updateUser);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="previousPassword"></param>
+        /// <param name="newPassword"></param>
+        void ChangePassword(string username, string previousPassword, string newPassword);
     }
 }
