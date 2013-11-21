@@ -21,7 +21,7 @@ namespace LoginApiApplication.Models.UserActions
         /// </summary>
         /// <param name="user"></param>
         /// <param name="userAccount"></param>
-        public void AddSimpleUser(User user, UserAccount userAccount)
+        public bool AddSimpleUser(User user, UserAccount userAccount)
         {
             var existingUser = RetrieveSimpleUser(user.Email);
 
@@ -61,10 +61,17 @@ namespace LoginApiApplication.Models.UserActions
                 UserAccountId = userAccount.UserAccountId,
                 UserUserId = user.UserId,
             };
-
-            _context.Users.Add(addUser);
-            _context.UserAccounts.Add(addUserAccount);
-            _context.SaveChanges();
+            try
+            {
+                _context.Users.Add(addUser);
+                _context.UserAccounts.Add(addUserAccount);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -103,7 +110,7 @@ namespace LoginApiApplication.Models.UserActions
         /// 
         /// </summary>
         /// <param name="updatedUser"></param>
-        public void EditSimpleUserDetails(User updatedUser)
+        public bool EditSimpleUserDetails(User updatedUser)
         {
             var existingUser = RetrieveSimpleUser(updatedUser.Email);
 
@@ -119,7 +126,16 @@ namespace LoginApiApplication.Models.UserActions
             existingUser.Email = updatedUser.Email;
             existingUser.Company = updatedUser.Company;
             existingUser.PhoneNumber = updatedUser.PhoneNumber;
-            _context.SaveChanges();
+
+            try
+            {
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -128,7 +144,7 @@ namespace LoginApiApplication.Models.UserActions
         /// <param name="username"></param>
         /// <param name="previousPassword"></param>
         /// <param name="newPassword"></param>
-        public void ChangePassword(string username, string previousPassword, string newPassword)
+        public bool ChangePassword(string username, string previousPassword, string newPassword)
         {
             var existingUser = RetrieveSimpleUser(username, previousPassword);
 
@@ -137,10 +153,18 @@ namespace LoginApiApplication.Models.UserActions
                 throw new Exception("This user does not exist so cannot change password.");
             }
 
-            var newPasswordHash = PasswordHash.CreateHash(newPassword);
-            
-            existingUser.UserAccounts.FirstOrDefault().Password = newPasswordHash;
-            _context.SaveChanges();
+            try
+            {
+                var newPasswordHash = PasswordHash.CreateHash(newPassword);
+
+                existingUser.UserAccounts.FirstOrDefault().Password = newPasswordHash;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;   
+            }
         }
     }
 }

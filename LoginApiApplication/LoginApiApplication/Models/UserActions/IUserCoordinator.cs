@@ -12,7 +12,7 @@ namespace LoginApiApplication.Models.UserActions
         /// </summary>
         /// <param name="user"></param>
         /// <param name="userAccount"></param>
-        void AddSimpleUser(User user, UserAccount userAccount);
+        bool AddSimpleUser(User user, UserAccount userAccount);
         
         /// <summary>
         /// 
@@ -33,7 +33,7 @@ namespace LoginApiApplication.Models.UserActions
         /// 
         /// </summary>
         /// <param name="updateUser"></param>
-        void EditSimpleUserDetails(User updateUser);
+        bool EditSimpleUserDetails(User updateUser);
 
         /// <summary>
         /// 
@@ -41,6 +41,6 @@ namespace LoginApiApplication.Models.UserActions
         /// <param name="username"></param>
         /// <param name="previousPassword"></param>
         /// <param name="newPassword"></param>
-        void ChangePassword(string username, string previousPassword, string newPassword);
+        bool ChangePassword(string username, string previousPassword, string newPassword);
     }
 }
